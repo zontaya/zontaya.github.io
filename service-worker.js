@@ -5,11 +5,14 @@ var filesToCache = [
   '/index.html',
   '/manifest.json',
   '/styles.css',
+  '/mdl/material.min.js',
+  '/mdl/material.min.js',
   '/images/icons/icon-128x128.png',
   '/images/icons/icon-144x144.png',
   '/images/icons/icon-152x152.png',
   '/images/icons/icon-192x192.png',
-  '/images/icons/icon-256x256.png'
+  '/images/icons/icon-256x256.png',
+  '/images/icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', function(e) {
