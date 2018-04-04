@@ -25,20 +25,20 @@ self.addEventListener('install', function(e) {
   );
 });
 
-self.addEventListener('activate', function(event) {
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.map(function(cacheName) {
-          if (filesToCache.indexOf(cacheName) === -1) {
-            console.log('[ServiceWorker] Removing old cache', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
+self.addEventListener('activate',  function(e){
+  e.waitUntil(
+    caches.keys().then(function(keyList) {
+      return Promise.all(keyList.map(function(key) {
+        if (filesToCache.indexOf(key) === -1) {
+          console.log('[ServiceWorker] Removing old cache', key);
+          return caches.delete(key);
+        }
+      }));
     })
   );
+  return self.clients.claim();
 });
+
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
