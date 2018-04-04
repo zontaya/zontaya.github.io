@@ -17,12 +17,15 @@ var filesToCache = [
 self.addEventListener("install", function(e) {
   console.log("[ServiceWorker] Install");
   e.waitUntil(
-    caches.open(cacheName).then(function(cache) {
-      console.log("[ServiceWorker] Caching app shell");
-      return cache.addAll(filesToCache);
-    }).then(function(){
-      return self.skipWaiting();
-    })
+    caches
+      .open(cacheName)
+      .then(function(cache) {
+        console.log("[ServiceWorker] Caching app shell");
+        return cache.addAll(filesToCache);
+      })
+      .then(function() {
+        return self.skipWaiting();
+      })
   );
 });
 
@@ -30,6 +33,8 @@ self.addEventListener("fetch", function(event) {
   event.respondWith(
     caches.match(event.request).then(function(response) {
       // Cache hit - return response
+
+      console.log("[ServiceWorker] fetch" + response);
       if (response) {
         return response;
       }
@@ -43,6 +48,7 @@ self.addEventListener("fetch", function(event) {
       return fetch(fetchRequest).then(function(response) {
         // Check if we received a valid response
         if (!response || response.status !== 200 || response.type !== "basic") {
+          console.log("[ServiceWorker] fetch" + response);
           return response;
         }
 
@@ -55,7 +61,7 @@ self.addEventListener("fetch", function(event) {
         caches.open(cacheName).then(function(cache) {
           cache.put(event.request, responseToCache);
         });
-
+        console.log("[ServiceWorker] fetch" + response);
         return response;
       });
     })
