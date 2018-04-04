@@ -49,7 +49,7 @@ self.addEventListener("fetch", function(event) {
         // to clone it so we have two streams.
         var responseToCache = response.clone();
 
-        caches.open(CACHE_NAME).then(function(cache) {
+        caches.open(cacheName).then(function(cache) {
           cache.put(event.request, responseToCache);
         });
 
@@ -58,8 +58,6 @@ self.addEventListener("fetch", function(event) {
     })
   );
 });
-
-
 
 self.addEventListener('activate', function(e) {
   e.waitUntil(
