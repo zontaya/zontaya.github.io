@@ -5,8 +5,11 @@ var filesToCache = [
   '/index.html',
   '/manifest.json',
   '/styles.css',
-  '/images/favicon.png',
-  '/images/android-desktop.png'
+  '/images/icon-128x128.png',
+  '/images/icon-144x144.png',
+  '/images/icon-152x152.png',
+  '/images/icon-192x192.png',
+  '/images/icon-256x256.png'
 ];
 
 self.addEventListener('install', function(e) {
@@ -27,5 +30,4 @@ self.addEventListener('fetch', function(e) {
         return response || fetch(e.request);
       })
     );
-  
 });
