@@ -83,7 +83,7 @@
       navigator.serviceWorker
         .register('service-worker.js')
         .then(function (reg) {
-          console.log('Service worker has been registered :' + reg);
+          console.log('Service worker has been registered :' + reg.scope);
         }).catch(function (err) {
           console.log('Service worker has err  :' + err);
         });
@@ -111,7 +111,7 @@
     </div>
 
     <main class="mdl-layout__content">
-      <div class="page-content">Hello World successful</div>
+      <div class="page-content">Hello World has successful</div>
     </main>
   </div>
 
