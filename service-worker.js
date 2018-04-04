@@ -3,8 +3,9 @@ var filesToCache = [
   "/",
   "/index.html",
   "/manifest.json",
-  "/styles.css",
-  "/mdl/material.min.js",
+  "/material.indigo-pink.min.css",
+  "/material.min.js",
+  "/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
   "/images/icons/icon-128x128.png",
   "/images/icons/icon-144x144.png",
   "/images/icons/icon-152x152.png",
@@ -58,4 +59,3 @@ self.addEventListener("fetch", function(event) {
     })
   );
 });
-
