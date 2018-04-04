@@ -62,13 +62,15 @@
 
 
     if ('serviceWorker' in navigator) {
-
-      navigator.serviceWorker.register('service-worker.js', {
-        scope: './'
-      }).then(function (reg) {
-        console.log('Service worker has been registered for scope:' + reg.scope);
-      });
-
+      if (navigator.serviceWorker.controller) {
+        console.log('[PWA Builder] active service worker found, no need to register')
+      } else {
+        navigator.serviceWorker.register('service-worker.js', {
+          scope: './'
+        }).then(function (reg) {
+          console.log('Service worker has been registered for scope:' + reg.scope);
+        });
+      }
 
     }
 
@@ -95,7 +97,7 @@
     </div>
 
     <main class="mdl-layout__content">
-      <div class="page-content">Hello World 9</div>
+      <div class="page-content">Hello World 10</div>
     </main>
   </div>
 
