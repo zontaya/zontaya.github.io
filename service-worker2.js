@@ -33,7 +33,7 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     fetch(event.request).catch(function(error) {
-        console.error( '[PWA Builder] Network request Failed. Serving offline page ' + error );
+        console.error( '[PWA Builder] Network request Failed. Serving offline page ');
         return caches.open(cacheName).then(function(cache) {
           return cache.match('index.html');
       });
