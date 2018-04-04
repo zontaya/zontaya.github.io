@@ -31,7 +31,7 @@ self.addEventListener('activate', function(event) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
           if (filesToCache.indexOf(cacheName) === -1) {
-            console.log('[ServiceWorker] Removing old cache', key);
+            console.log('[ServiceWorker] Removing old cache', cacheName);
             return caches.delete(cacheName);
           }
         })
