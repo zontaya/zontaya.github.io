@@ -1,4 +1,5 @@
 var cacheName = "weatherPWA";
+var offlinePage = new Request('index.html');
 var filesToCache = [
   "/",
   "/index.html",
@@ -18,7 +19,6 @@ var filesToCache = [
 
 //Install stage sets up the offline page in the cahche and opens a new cache
 self.addEventListener('install', function(event) {
-  var offlinePage = new Request('index.html');
   event.waitUntil(
   fetch(offlinePage).then(function(response) {
     return caches.open(cacheName).then(function(cache) {
