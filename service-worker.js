@@ -6,7 +6,6 @@ var filesToCache = [
   '/manifest.json',
   '/styles.css',
   '/mdl/material.min.js',
-  '/mdl/material.min.js',
   '/images/icons/icon-128x128.png',
   '/images/icons/icon-144x144.png',
   '/images/icons/icon-152x152.png',
@@ -25,6 +24,16 @@ self.addEventListener('install', function(e) {
   );
 });
 
+
+self.addEventListener('fetch', function(e) {
+  console.log('[Service Worker] Fetch', e.request.url);
+  e.respondWith(
+      caches.match(e.request).then(function(response) {
+        return response || fetch(e.request);
+      })
+    );
+});
+
 self.addEventListener('activate', function(e) {
   console.log('[ServiceWorker] Activate');
   e.waitUntil(
@@ -37,14 +46,4 @@ self.addEventListener('activate', function(e) {
       }));
     })
   );
-});
-
-
-self.addEventListener('fetch', function(e) {
-  console.log('[Service Worker] Fetch', e.request.url);
-  e.respondWith(
-      caches.match(e.request).then(function(response) {
-        return response || fetch(e.request);
-      })
-    );
 });
