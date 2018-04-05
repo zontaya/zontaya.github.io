@@ -82,7 +82,6 @@
     if ('serviceWorker' in navigator) {
 
       navigator.serviceWorker.register('service-worker.js').then(reg => {
-        reg.unregister();
         reg.update();
         reg.installing; // the installing worker, or undefined
         reg.waiting; // the waiting worker, or undefined
