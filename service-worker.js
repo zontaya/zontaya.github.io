@@ -28,12 +28,17 @@ self.addEventListener("install", function(e) {
       })
   );
 });
+
 self.addEventListener("fetch", function(event) {
   event.respondWith(
     caches.open(cacheName).then(function(cache) {
       return cache.match(event.request).then(function(response) {
         var fetchPromise = fetch(event.request).then(function(networkResponse) {
-          cache.put(event.request, networkResponse.clone());
+          // if we got a response from the cache, update the cache
+          if (response) {
+            console.log("cached page: " + event.request.url);
+            cache.put(event.request, networkResponse.clone());
+          }
           return networkResponse;
         });
         return response || fetchPromise;
