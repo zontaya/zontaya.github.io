@@ -29,18 +29,31 @@ self.addEventListener("install", function(e) {
   );
 });
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.open(cacheName).then(function(cache) {
+
+self.addEventListener("fetch", function(event) {
+  var requestURL = new URL(event.request.url);
+  var freshResource = fetch(event.request).then(function(response) {
+    var clonedResponse = response.clone();
+    // Don't update the cache with error pages!
+    if (response.ok) {
+      // All good? Update the cache with the network response
+      caches.open(cacheName).then(function(cache) {
+        cache.put(event.request, clonedResponse);
+      });
+    }
+    return response;
+  });
+  var cachedResource = caches
+    .open(cacheName)
+    .then(function(cache) {
       return cache.match(event.request).then(function(response) {
-        var fetchPromise = fetch(event.request).then(function(networkResponse) {
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        })
-        return response || fetchPromise;
-      })
+        return response || freshResource;
+      });
     })
-  );
+    .catch(function(e) {
+      return freshResource;
+    });
+  event.respondWith(cachedResource);
 });
 
 self.addEventListener("activate", function(event) {
