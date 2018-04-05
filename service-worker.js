@@ -28,12 +28,15 @@ self.addEventListener("install", function(e) {
       })
   );
 });
-self.addEventListener('fetch', function(event) {
+self.addEventListener("fetch", function(event) {
   event.respondWith(
-    caches.open('cacheName').then(function(cache) {
-      return fetch(event.request).then(function(response) {
-        cache.put(event.request, response.clone());
-        return response;
+    caches.open(cacheName).then(function(cache) {
+      return cache.match(event.request).then(function(response) {
+        var fetchPromise = fetch(event.request).then(function(networkResponse) {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+        return response || fetchPromise;
       });
     })
   );
@@ -43,7 +46,8 @@ self.addEventListener("activate", function(event) {
   event.waitUntil(
     caches.keys().then(function(c) {
       return Promise.all(
-        c.filter(function(cache) {
+        c
+          .filter(function(cache) {
             // Return true if you want to remove this cache,
             // but remember that caches are shared across
             // the whole origin
