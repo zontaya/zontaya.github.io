@@ -37,6 +37,7 @@ self.addEventListener('fetch', function(event) {
   );
 });
 
+
 self.addEventListener("activate", function(e) {
   console.log("[ServiceWorker] Activate");
   e.waitUntil(
