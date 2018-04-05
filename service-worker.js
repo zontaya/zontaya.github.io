@@ -5,6 +5,7 @@ var filesToCache = [
   "/manifest.json",
   "/material.indigo-pink.min.css",
   "/material.min.js",
+  "/service-worker.js",
   "/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
   "/images/icons/icon-128x128.png",
   "/images/icons/icon-144x144.png",
@@ -29,14 +30,19 @@ self.addEventListener("install", function(e) {
   );
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener("fetch", function(event) {
+  var eventReq = event.request;
   event.respondWith(
-    caches.match(event.request).then(function(resp) {
-      return resp || fetch(event.request).then(function(response) {
-        return caches.open(cacheName).then(function(cache) {
-          cache.put(event.request, response.clone());
-          return response;
-        });  
+    caches.open(cacheName).then(function(cache) {
+      return cache.match(eventReq).then(function(response) {
+        return (
+          response ||
+          fetch(eventReq).then(function(response) {
+            var clone = response.clone();
+            cache.put(eventReq, clone);
+            return response;
+          })
+        );
       });
     })
   );
