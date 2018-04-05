@@ -55,14 +55,11 @@ self.addEventListener("fetch", function(event) {
   event.respondWith(cachedResource);
 });
 
-
-
 self.addEventListener("activate", function(event) {
   event.waitUntil(
     caches.keys().then(function(c) {
       return Promise.all(
-        c
-          .filter(function(cache) {
+        c.filter(function(cache) {
             // Return true if you want to remove this cache,
             // but remember that caches are shared across
             // the whole origin
