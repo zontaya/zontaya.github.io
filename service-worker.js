@@ -14,6 +14,8 @@ var filesToCache = [
   "/images/icons/icon-512x512.png"
 ];
 
+
+
 self.addEventListener("install", function(e) {
   console.log("[ServiceWorker] Install");
   e.waitUntil(
@@ -29,28 +31,34 @@ self.addEventListener("install", function(e) {
   );
 });
 
+
+
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    fetch(event.request).catch(function() {
-      return caches.match(event.request);
+    caches.open(cacheName).then(function(cache) {
+      return fetch(event.request).then(function(response) {
+        cache.put(event.request, response.clone());
+        return response;
+      });
     })
   );
 });
 
 
-self.addEventListener("activate", function(e) {
-  console.log("[ServiceWorker] Activate");
-  e.waitUntil(
-    caches.keys().then(function(keyList) {
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(c) {
       return Promise.all(
-        keyList.map(function(key) {
-          if (key !== cacheName) {
-            console.log("[ServiceWorker] Removing old cache", key);
-            return caches.delete(key);
-          }
+        c.filter(function(cache) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+        }).map(function(cache) {
+          console.log("[ServiceWorker] Caching app remove");
+          return caches.delete(cache);
         })
       );
     })
   );
-  return self.clients.claim();
 });
