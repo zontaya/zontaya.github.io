@@ -30,7 +30,8 @@ self.addEventListener("install", function(e) {
 });
 
 self.addEventListener("fetch", function(event) {
-  var freshResource = fetch(event.request.clone).then(function(response) {
+  var requestURL = new URL(event.request.url);
+  var freshResource = fetch(requestURL).then(function(response) {
     var clonedResponse = response.clone();
     // Don't update the cache with error pages!
     if (response.ok) {
