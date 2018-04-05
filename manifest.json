@@ -3,9 +3,8 @@
   "short_name" : "Weather",
   "start_url" : "https://zontaya.github.io/index.html",
   "display" : "standalone",
-  "lang" : "",
   "orientation" : "portrait",
-  "background_color": "transparent",
+  "background_color": "#2F3BA2",
   "theme_color": "#2F3BA2",
   "icons": [
       {
