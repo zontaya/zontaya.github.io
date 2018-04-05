@@ -30,7 +30,7 @@ self.addEventListener("install", function(e) {
 });
 
 self.addEventListener("fetch", function(event) {
-  event.respondWith(
+  event.waitUntil(
     caches.open(cacheName).then(function(cache) {
       return cache.match(event.request).then(function(response) {
         var fetchPromise = fetch(event.request).then(function(networkResponse) {
