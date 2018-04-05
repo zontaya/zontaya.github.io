@@ -64,9 +64,9 @@ function update(request) {
     return fetch(request).then(function(response) {
       return cache.put(request, response.clone()).then(function() {
         return response;
-      });
-    });
-  });
+      })
+    })
+  })
 }
 function refresh(response) {
   return self.clients.matchAll().then(function(clients) {
