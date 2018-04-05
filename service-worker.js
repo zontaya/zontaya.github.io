@@ -29,12 +29,13 @@ self.addEventListener("install", function(e) {
   );
 });
 
+
 self.addEventListener("fetch", function(event) {
   event.respondWith(
     caches.match(event.request).then(function(response) {
       // Cache hit - return response
 
-      console.log("[ServiceWorker] fetch 1 :" + response);
+      console.log("[ServiceWorker] fetch 1 :" + response.status);
       if (response) {
         return response;
       }
@@ -48,7 +49,7 @@ self.addEventListener("fetch", function(event) {
       return fetch(fetchRequest).then(function(response) {
         // Check if we received a valid response
         if (!response || response.status !== 200 || response.type !== "basic") {
-          console.log("[ServiceWorker] fetch 2 : " + response);
+          console.log("[ServiceWorker] fetch 2 : " + response.status);
           return response;
         }
 
@@ -61,7 +62,7 @@ self.addEventListener("fetch", function(event) {
         caches.open(cacheName).then(function(cache) {
           cache.put(event.request, responseToCache);
         });
-        console.log("[ServiceWorker] fetch 3 :" + response);
+        console.log("[ServiceWorker] fetch 3 :" + response.status);
         return response;
       });
     })
