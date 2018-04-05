@@ -30,17 +30,30 @@ self.addEventListener("install", function(e) {
 });
 
 self.addEventListener("fetch", function(event) {
-  event.respondWith(
-    fetch(event.request).catch(function(e) {
-      var clonedResponse = response.clone();
+  new URL(event.request.url);
+  var freshResource = global.fetch(event.request).then(function(response) {
+    var clonedResponse = response.clone();
+    // Don't update the cache with error pages!
+    if (response.ok) {
+      // All good? Update the cache with the network response
       caches.open(cacheName).then(function(cache) {
         cache.put(event.request, clonedResponse);
       });
-      return caches.match(event.request);
+    }
+    return response;
+  });
+  var cachedResource = caches
+    .open(cacheName)
+    .then(function(cache) {
+      return cache.match(event.request).then(function(response) {
+        return response || freshResource;
+      });
     })
-  );
+    .catch(function(e) {
+      return freshResource;
+    });
+  event.respondWith(cachedResource);
 });
-
 
 self.addEventListener("activate", function(event) {
   event.waitUntil(
