@@ -14,8 +14,6 @@ var filesToCache = [
   "/images/icons/icon-512x512.png"
 ];
 
-
-
 self.addEventListener("install", function(e) {
   console.log("[ServiceWorker] Install");
   e.waitUntil(
@@ -33,33 +31,37 @@ self.addEventListener("install", function(e) {
 
 
 
-
-self.addEventListener('fetch', function(event) {
+self.addEventListener("fetch", function(event) {
   event.respondWith(
-    caches.open(cacheName).then(function(cache) {
-      return cache.match(event.request).then(function (response) {
-        return response || fetch(event.request).then(function(response) {
-          cache.put(event.request, response.clone());
-          return response;
-        });
-      });
+    caches.match(event.request).then(function(response) {
+      return (
+        response ||
+        fetch(event.request) //fetch from internet
+          .then(function(res) {
+            return caches.open(cacheName).then(function(cache) {
+              cache.put(event.request.url, res.clone()); //save the response for future
+              return res; // return the fetched data
+            });
+          })
+      );
     })
   );
 });
 
-
-self.addEventListener('activate', function(event) {
+self.addEventListener("activate", function(event) {
   event.waitUntil(
     caches.keys().then(function(c) {
       return Promise.all(
-        c.filter(function(cache) {
-          // Return true if you want to remove this cache,
-          // but remember that caches are shared across
-          // the whole origin
-        }).map(function(cache) {
-          console.log("[ServiceWorker] Caching app remove");
-          return caches.delete(cache);
-        })
+        c
+          .filter(function(cache) {
+            // Return true if you want to remove this cache,
+            // but remember that caches are shared across
+            // the whole origin
+          })
+          .map(function(cache) {
+            console.log("[ServiceWorker] Caching app remove");
+            return caches.delete(cache);
+          })
       );
     })
   );
