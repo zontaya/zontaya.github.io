@@ -28,19 +28,15 @@ self.addEventListener("install", function(e) {
       })
   );
 });
-self.addEventListener("fetch", function(event) {
+
+self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.open(cacheName).then(function(cache) {
-      return cache.match(event.request).then(function(response) {
-        var fetchPromise = fetch(event.request).then(function(networkResponse) {
-          // if we got a response from the cache, update the cache
-          if (response) {
-            console.log("cached page: " + event.request.url);
-            cache.put(event.request, networkResponse.clone());
-          }
-          return networkResponse;
-        });
-        return response || fetchPromise;
+    caches.match(event.request).then(function(resp) {
+      return resp || fetch(event.request).then(function(response) {
+        return caches.open(cacheName).then(function(cache) {
+          cache.put(event.request, response.clone());
+          return response;
+        });  
       });
     })
   );
