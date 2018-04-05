@@ -31,18 +31,14 @@ self.addEventListener("install", function(e) {
 });
 
 self.addEventListener("fetch", function(event) {
-  var eventReq = event.request;
   event.respondWith(
     caches.open(cacheName).then(function(cache) {
-      return cache.match(eventReq).then(function(response) {
-        return (
-          response ||
-          fetch(eventReq).then(function(response) {
-            var clone = response.clone();
-            cache.put(eventReq, clone);
-            return response;
-          })
-        );
+      return cache.match(event.request).then(function(response) {
+        var fetchPromise = fetch(event.request).then(function(networkResponse) {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+        return response || fetchPromise;
       });
     })
   );
