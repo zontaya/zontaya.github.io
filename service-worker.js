@@ -28,31 +28,10 @@ self.addEventListener("install", function(e) {
       })
   );
 });
-
-self.addEventListener("fetch", function(event) {
-  new URL(event.request.url);
-  var freshResource = global.fetch(event.request).then(function(response) {
-    var clonedResponse = response.clone();
-    // Don't update the cache with error pages!
-    if (response.ok) {
-      // All good? Update the cache with the network response
-      caches.open(cacheName).then(function(cache) {
-        cache.put(event.request, clonedResponse);
-      });
-    }
-    return response;
-  });
-  var cachedResource = caches
-    .open(cacheName)
-    .then(function(cache) {
-      return cache.match(event.request).then(function(response) {
-        return response || freshResource;
-      });
-    })
-    .catch(function(e) {
-      return freshResource;
-    });
-  event.respondWith(cachedResource);
+self.addEventListener("fetch", function(evt) {
+  console.log("The service worker is serving the asset.");
+  evt.respondWith(fromCache(evt.request));
+  evt.waitUntil(update(evt.request).then(refresh));
 });
 
 self.addEventListener("activate", function(event) {
@@ -73,3 +52,31 @@ self.addEventListener("activate", function(event) {
     })
   );
 });
+
+function fromCache(request) {
+  return caches.open(cacheName).then(function(cache) {
+    return cache.match(request);
+  });
+}
+
+function update(request) {
+  return caches.open(cacheName).then(function(cache) {
+    return fetch(request).then(function(response) {
+      return cache.put(request, response.clone()).then(function() {
+        return response;
+      });
+    });
+  });
+}
+function refresh(response) {
+  return self.clients.matchAll().then(function(clients) {
+    clients.forEach(function(client) {
+      var message = {
+        type: "refresh",
+        url: response.url,
+        eTag: response.headers.get("ETag")
+      };
+      client.postMessage(JSON.stringify(message));
+    });
+  });
+}
