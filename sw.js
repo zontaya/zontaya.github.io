@@ -1,12 +1,12 @@
-var cacheName = "weatherPWA";
+var cacheName = "weather-PWA";
 var filesToCache = [
   "/",
   "/index.html",
   "/manifest.json",
-  "/material.indigo-pink.min.css",
+  "/script/main.js.json",
+  "/styles/material.indigo-pink.min.css",
   "/material.min.js",
-  "/service-worker.js",
-  "/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
+  "/styles/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
   "/images/icons/icon-128x128.png",
   "/images/icons/icon-144x144.png",
   "/images/icons/icon-152x152.png",

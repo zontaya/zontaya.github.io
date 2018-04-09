@@ -43,32 +43,10 @@
   <link rel="shortcut icon" href="images/icons/icon-192x192.png">
 
   <link rel="manifest" href="/manifest.json">
+  <script src="/script/main.js"></script>
+  <link rel="stylesheet" href="/styles/material.indigo-pink.min.css">
+  <link rel="stylesheet" href="/styles/styles.css">
 
-  <link rel="stylesheet" href="/material.indigo-pink.min.css">
-  <style>
-    @font-face {
-      font-family: 'Material Icons';
-      font-style: normal;
-      font-weight: 400;
-      src: url(/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
-    }
-
-    .material-icons {
-      font-family: 'Material Icons';
-      font-weight: normal;
-      font-style: normal;
-      font-size: 24px;
-      line-height: 1;
-      letter-spacing: normal;
-      text-transform: none;
-      display: inline-block;
-      white-space: nowrap;
-      word-wrap: normal;
-      direction: ltr;
-      font-feature-settings: 'liga' 0;
-      -webkit-font-smoothing: antialiased;
-    }
-  </style>
 
 </head>
 
@@ -77,54 +55,6 @@
   <noscript>
     nor support
   </noscript>
-
-  <script type="text/javascript">
-    if ('serviceWorker' in navigator) {
-
-      navigator.serviceWorker.register('service-worker.js').then(function (reg) {
-        console.log('[ServiceWorker] has been registered for scope:' + reg.scope);
-      })
-
-      navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
-        // To unsubscribe from push messaging, you need get the
-        // subcription object, which you can call unsubscribe() on.
-        serviceWorkerRegistration.pushManager.subscribe.then(function (pushSubscription) {
-          // Check we have a subscription to unsubscribe
-          if (!pushSubscription) {
-            // No subscription object, so set the state
-            // to allow the user to subscribe to push
-            isPushEnabled = false;
-            pushButton.disabled = false;
-            pushButton.textContent = 'Enable Push Messages';
-            return;
-          }
-
-          // TODO: Make a request to your server to remove
-          // the users data from your data store so you
-          // don't attempt to send them push messages anymore
-
-          // We have a subcription, so call unsubscribe on it
-          pushSubscription.unsubscribe().then(function () {
-            pushButton.disabled = false;
-            pushButton.textContent = 'Enable Push Messages';
-            isPushEnabled = false;
-          }).catch(function (e) {
-            // We failed to unsubscribe, this can lead to
-            // an unusual state, so may be best to remove
-            // the subscription id from your data store and
-            // inform the user that you disabled push
-
-            window.Demo.debug.log('Unsubscription error: ', e);
-            pushButton.disabled = false;
-          });
-        }).catch(function (e) {
-          window.Demo.debug.log('Error thrown while unsubscribing from ' +
-            'push messaging.', e);
-        });
-      });
-
-    }
-  </script>
 
   <!-- Always shows a header, even in smaller screens. -->
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -147,6 +77,33 @@
     </div>
 
     <main class="mdl-layout__content">
+
+
+      <header>
+        <h1>Push Codelab</h1>
+      </header>
+
+      <main>
+        <p>Welcome to the push messaging codelab. The button below needs to be fixed to support subscribing to push.</p>
+        <p>
+          <button disabled class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Enable Push Messaging
+          </button>
+        </p>
+        <section class="subscription-details js-subscription-details is-invisible">
+          <p>Once you've subscribed your user, you'd send their subscription to your server to store in a database so that when
+            you want to send a message you can lookup the subscription and send a message to it.</p>
+          <p>To simplify things for this code lab copy the following details into the
+            <a href="https://web-push-codelab.glitch.me/">Push Companion Site
+            </a> and it'll send a push message for you, using the application server keys on the site - so make sure they
+            match.
+          </p>
+          <pre><code class="js-subscription-json"></code></pre>
+        </section>
+      </main>
+
+
+
       <div class="page-content">Hello kitty has successful </div>
     </main>
   </div>
