@@ -3,10 +3,12 @@ var filesToCache = [
   "/",
   "/index.html",
   "/manifest.json",
-  "/script/main.js.json",
+  "/sw.js",
+  "/script/main.js",
   "/styles/material.indigo-pink.min.css",
-  "/material.min.js",
+  "/styles/styles.css",
   "/styles/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
+  "/material.min.js",
   "/images/icons/icon-128x128.png",
   "/images/icons/icon-144x144.png",
   "/images/icons/icon-152x152.png",
@@ -65,53 +67,26 @@ self.addEventListener("activate", function(event) {
   );
 });
 
-self.addEventListener("sync", function(event) {
-  console.log("[ServiceWorker] sync");
-  registration.showNotification("Sync event fired!");
-  if (event.id == "myFirstSync") {
-  }
+
+
+self.addEventListener("notificationclick", function(event) {
+  console.log("[ServiceWorker] Notification click Received.");
+
+  event.notification.close();
+
+  event.waitUntil(clients.openWindow("https://developers.google.com/web/"));
 });
 
 self.addEventListener("push", function(event) {
-  console.log("Received a push message", event);
+  console.log("[ServiceWorker] Push Received.");
+  console.log('[ServiceWorker] Push had this data: "${event.data.text()}"');
 
-  var title = "Yay a message.";
-  var body = "We have received a push message.";
-  var icon = "/images/icon-192x192.png";
-  var tag = "simple-push-demo-notification-tag";
+  const title = "Push Codelab";
+  const options = {
+    body: "Yay it works.",
+    icon: "images/android-desktop.png",
+    badge: "images/badge.png"
+  };
 
-  event.waitUntil(
-    self.registration.showNotification(title, {
-      body: body,
-      icon: icon,
-      tag: tag
-    })
-  );
-});
-
-self.addEventListener("notificationclick", function(event) {
-  console.log("On notification click: ", event.notification.tag);
-  // Android doesn’t close the notification when you click on it
-  // See: http://crbug.com/463146
-  event.notification.close();
-
-  // This looks to see if the current is already open and
-  // focuses if it is
-  event.waitUntil(
-    clients
-      .matchAll({
-        type: "window"
-      })
-      .then(function(clientList) {
-        for (var i = 0; i < clientList.length; i++) {
-          var client = clientList[i];
-          if (client.url === "/" && "focus" in client) {
-            return client.focus();
-          }
-        }
-        if (clients.openWindow) {
-          return clients.openWindow("/");
-        }
-      })
-  );
+  event.waitUntil(self.registration.showNotification(title, options));
 });
