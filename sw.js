@@ -67,8 +67,6 @@ self.addEventListener("activate", function(event) {
   );
 });
 
-
-
 self.addEventListener("notificationclick", function(event) {
   console.log("[ServiceWorker] Notification click Received.");
 
