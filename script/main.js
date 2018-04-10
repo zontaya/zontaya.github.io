@@ -22,6 +22,7 @@
 
 "use strict";
 
+
 const applicationServerPublicKey =
   "BP26W1MAulvMHMX_Nv-ivrf1r-siE16R1_JWUfyMKz2WvT9sYQU7eSey0jg8s1dVi4ZzeBw4ppEYMKhxIiuLp0s";
 
