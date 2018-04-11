@@ -97,7 +97,7 @@ function initializeUI() {
     isSubscribed = !(subscription === null);
     updateSubscriptionOnServer(subscription);
     if (isSubscribed) {
-      console.log("User IS subscribed.");
+      console.log("User is subscribed.");
     } else {
       console.log("User is NOT subscribed.");
       subscribeUser();
@@ -157,10 +157,8 @@ function unsubscribeUser() {
     })
     .then(function() {
       updateSubscriptionOnServer(null);
-
       console.log("User is unsubscribed.");
       isSubscribed = false;
-
       updateBtn();
     });
 }
