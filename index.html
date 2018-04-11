@@ -58,7 +58,7 @@
       messagingSenderId: "480761532735"
     };
     firebase.initializeApp(config);
-    const messaging = firebase.messaging();
+
   </script>
 
 
@@ -71,6 +71,7 @@
   </noscript>
 
   <script type="text/javascript">
+    const messaging = firebase.messaging();
     function subscribeFCM() {
       messaging.requestPermission()
         .then(function () {
