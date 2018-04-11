@@ -78,9 +78,6 @@
         .register("sw.js")
         .then(function (swReg) {
           console.log("[ServiceWorker] is registered", swReg);
-
-          swRegistration = swReg;
-          initializeUI();
         })
         .catch(function (error) {
           console.error("[ServiceWorker] Error", error);
