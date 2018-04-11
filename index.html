@@ -71,6 +71,24 @@
   </noscript>
 
   <script type="text/javascript">
+    if ("serviceWorker" in navigator && "PushManager" in window) {
+      console.log("[ServiceWorker] and Push is supported");
+
+      navigator.serviceWorker
+        .register("sw.js")
+        .then(function (swReg) {
+          console.log("[ServiceWorker] is registered", swReg);
+
+          swRegistration = swReg;
+          initializeUI();
+        })
+        .catch(function (error) {
+          console.error("[ServiceWorker] Error", error);
+        });
+    } else {
+      console.warn("Push messaging is not supported");
+      pushButton.textContent = "Push Not Supported";
+    }
     const messaging = firebase.messaging();
     function subscribeFCM() {
       messaging.requestPermission()
