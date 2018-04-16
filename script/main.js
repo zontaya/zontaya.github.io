@@ -36,9 +36,11 @@ if ("serviceWorker" in navigator && "PushManager" in window) {
   navigator.serviceWorker
     .register("sw.js")
     .then(function(swReg) {
-      console.log("[ServiceWorker] is registered", swReg);
+    
 
       swRegistration = swReg;
+      swReg.update();
+      console.log("[ServiceWorker] is registered", swReg);
       initializeUI();
     })
     .catch(function(error) {

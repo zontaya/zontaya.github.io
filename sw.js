@@ -72,12 +72,12 @@ self.addEventListener("notificationclick", function(event) {
 
   event.notification.close();
 
-  event.waitUntil(clients.openWindow("https://developers.google.com/web/"));
+  event.waitUntil(clients.openWindow("/index.html"));
 });
 
 self.addEventListener("push", function(event) {
   console.log("[ServiceWorker] Push Received.");
-  console.log('[ServiceWorker] Push had this data: "${event.data.text()}"');
+  console.log("[ServiceWorker] Push had this data: " + event.data.text());
 
   const title = "Push Codelab";
   const options = {
@@ -88,3 +88,5 @@ self.addEventListener("push", function(event) {
 
   event.waitUntil(self.registration.showNotification(title, options));
 });
+
+
