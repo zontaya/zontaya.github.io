@@ -69,11 +69,11 @@ self.addEventListener("activate", function(event) {
 
 self.addEventListener("notificationclick", function(event) {
   console.log("[ServiceWorker] Notification click Received.");
-
   event.notification.close();
-
   event.waitUntil(clients.openWindow("/index.html"));
 });
+
+
 
 self.addEventListener("push", function(event) {
   console.log("[ServiceWorker] Push Received.");

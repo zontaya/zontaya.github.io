@@ -22,9 +22,7 @@
 
 "use strict";
 
-const applicationServerPublicKey =
-  "BLzPK96e2_tX5pE9HA9D6j_H1fkZi3yEgpG1HGifioFtM1wWSoJBcV7vWAsXzIVngaVAm5lmnD2TwvF46ouYx0M";
-
+const applicationServerPublicKey ="BIizsDSQVi9PmiqsiW_MIhi5FTVialIIm5RlsXKUYpqTsYW0xcg2EN87CX7tMtDFMI93ON0zlNlHiv1CTggXgWc=";
 const pushButton = document.querySelector(".js-push-btn");
 
 let isSubscribed = false;
@@ -36,8 +34,6 @@ if ("serviceWorker" in navigator && "PushManager" in window) {
   navigator.serviceWorker
     .register("sw.js")
     .then(function(swReg) {
-    
-
       swRegistration = swReg;
       swReg.update();
       console.log("[ServiceWorker] is registered", swReg);
