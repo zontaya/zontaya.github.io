@@ -46,6 +46,8 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/styles/material.indigo-pink.min.css">
   <link rel="stylesheet" href="/styles/styles.css">
+  <script defer src="/script/material.min.js"></script>
+ 
 
 </head>
 
@@ -55,34 +57,38 @@
     not support
   </noscript>
 
+
   <!-- Always shows a header, even in smaller screens. -->
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title">HTML5 </span>
+        <span class="mdl-layout-title">Title</span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
-        <!-- Navigation -->
+        <!-- Navigation. We hide it in small screens. -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
       </div>
     </header>
-
     <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">HTML5 Tutorial</span>
+      <span class="mdl-layout-title">Title</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="">Home</a>
-        <a class="mdl-navigation__link" href="">About</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
       </nav>
     </div>
-
     <main class="mdl-layout__content">
+      <div class="page-content">
+        <!-- Your content goes here -->
 
 
-      <header>
-        <h1>Push Codelab</h1>
-      </header>
-
-      <main>
         <p>Welcome to the push messaging codelab. The button below needs to be fixed to support subscribing to push.</p>
         <p>
           <button disabled class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
@@ -99,17 +105,12 @@
           </p>
           <p class="js-subscription-json"></p>
         </section>
-      </main>
 
-      <div class="page-content">Hello kitty has successful </div>
-
-
+      </div>
     </main>
   </div>
-  ./mr_lama_stikers__coffe.json
-  <script defer src="material.min.js"></script>
-  <script src="/script/main.js"></script>
 
+  <script src="/script/main.js"></script>
 
 </body>
 
