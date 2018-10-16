@@ -17,19 +17,19 @@
 					<key>kind</key>
 					<string>display-image</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/</string>
+					<string>https://zontaya.github.io</string>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>full-size-image</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/</string>
+					<string>https://zontaya.github.io</string>
 				</dict>
 			</array>
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>org.reactjs.native.example.ReserveCar</string>
+				<string>com.cct.react.native.reservecar</string>
 				<key>bundle-version</key>
 				<string>1.0</string>
 				<key>kind</key>
@@ -43,109 +43,131 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-1AFE5381-DEF1-41D2-9080-F127004BBAD9.ipa</string>
-					<key>variantDescriptors</key>
-					<array>
-						<dict>
-							<key>device</key>
-							<string>iPhone8,1</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-						<dict>
-							<key>device</key>
-							<string>iPod7,1</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-						<dict>
-							<key>device</key>
-							<string>iPhone6,1</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-						<dict>
-							<key>device</key>
-							<string>iPhone6,2</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-						<dict>
-							<key>device</key>
-							<string>iPhone8,4</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-						<dict>
-							<key>device</key>
-							<string>iPhone10,1</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-						<dict>
-							<key>device</key>
-							<string>iPhone9,1</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-						<dict>
-							<key>device</key>
-							<string>iPhone7,2</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-						<dict>
-							<key>device</key>
-							<string>iPhone10,4</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-						<dict>
-							<key>device</key>
-							<string>iPhone9,3</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-					</array>
-					<key>variantIds</key>
-					<array>
-						<string>iPhone6,1</string>
-						<string>iPhone9,9</string>
-						<string>iPhone10,1</string>
-						<string>iPhone7,2</string>
-						<string>iPhone9,3</string>
-						<string>iPhone6,2</string>
-						<string>iPhone9,7</string>
-						<string>iPhone9,1</string>
-						<string>iPhone8,4</string>
-						<string>iPhone8,1</string>
-						<string>iPhone9,8</string>
-						<string>iPhone10,4</string>
-						<string>iPod7,1</string>
-					</array>
-				</dict>
-				<dict>
-					<key>kind</key>
-					<string>software-package</string>
-					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-BEE466CD-CBD2-4534-A76F-3785B6919F92.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-28DD0B66-E9BE-4EE7-96C5-8BF9373A9478.ipa</string>
 					<key>variantDescriptors</key>
 					<array/>
 					<key>variantIds</key>
 					<array>
-						<string>iPad3,6</string>
-						<string>iPad3,4</string>
-						<string>iPad3,2</string>
-						<string>iPad3,5</string>
-						<string>iPad3,3</string>
-						<string>iPad3,1</string>
+						<string>iPhone5,2</string>
+						<string>iPod5,1</string>
+						<string>iPhone5,3</string>
+						<string>iPhone4,1</string>
+						<string>iPhone5,1</string>
+						<string>iPhone5,4</string>
 					</array>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-81D4B9C3-9E36-40D7-97DC-013D3E3F3AE5.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-E2FFD689-87DE-4EC1-A313-25EA9BFE1EE8.ipa</string>
+					<key>variantDescriptors</key>
+					<array>
+						<dict>
+							<key>device</key>
+							<string>iPhone7,1</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+						<dict>
+							<key>device</key>
+							<string>iPhone11,4</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+						<dict>
+							<key>device</key>
+							<string>iPhone10,5</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+						<dict>
+							<key>device</key>
+							<string>iPhone9,2</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+						<dict>
+							<key>device</key>
+							<string>iPhone10,6</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+						<dict>
+							<key>device</key>
+							<string>iPhone9,4</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+						<dict>
+							<key>device</key>
+							<string>iPhone10,3</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+						<dict>
+							<key>device</key>
+							<string>iPhone10,2</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+						<dict>
+							<key>device</key>
+							<string>iPhone11,6</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+						<dict>
+							<key>device</key>
+							<string>iPhone8,2</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+						<dict>
+							<key>device</key>
+							<string>iPhone11,2</string>
+							<key>os-version</key>
+							<string>12</string>
+						</dict>
+					</array>
+					<key>variantIds</key>
+					<array>
+						<string>iPhone11,6</string>
+						<string>iPhone7,1</string>
+						<string>iPhone10,2</string>
+						<string>iPhone11,4</string>
+						<string>iPhone10,6</string>
+						<string>iPhone10,5</string>
+						<string>iPhone11,2</string>
+						<string>iPhone8,2</string>
+						<string>iPhone9,4</string>
+						<string>iPhone10,3</string>
+						<string>iPhone9,2</string>
+					</array>
+				</dict>
+				<dict>
+					<key>kind</key>
+					<string>software-package</string>
+					<key>url</key>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-02E7957A-DD4D-4431-9769-A5C99E2E65C2.ipa</string>
+					<key>variantDescriptors</key>
+					<array/>
+					<key>variantIds</key>
+					<array>
+						<string>iPad2,3</string>
+						<string>iPad2,2</string>
+						<string>iPad2,1</string>
+						<string>iPad2,7</string>
+						<string>iPad2,6</string>
+						<string>iPad2,5</string>
+						<string>iPad2,4</string>
+					</array>
+				</dict>
+				<dict>
+					<key>kind</key>
+					<string>software-package</string>
+					<key>url</key>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-3D28FE2B-C19E-4092-8F52-35BD67DC0636.ipa</string>
 					<key>variantDescriptors</key>
 					<array>
 						<dict>
@@ -164,7 +186,7 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-06D90644-A922-4728-A18B-7962579F45F1.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-F8B7EBC0-D58C-4E75-95B9-9E41093C5A8D.ipa</string>
 					<key>variantDescriptors</key>
 					<array>
 						<dict>
@@ -351,124 +373,102 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-DEDA83E0-3FE0-4014-9F74-0A10D72597F9.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-D5F1A7E0-EBAB-4C4C-B67F-31319632B544.ipa</string>
 					<key>variantDescriptors</key>
 					<array/>
 					<key>variantIds</key>
 					<array>
-						<string>iPhone5,2</string>
-						<string>iPod5,1</string>
-						<string>iPhone5,3</string>
-						<string>iPhone4,1</string>
-						<string>iPhone5,1</string>
-						<string>iPhone5,4</string>
+						<string>iPad3,6</string>
+						<string>iPad3,4</string>
+						<string>iPad3,2</string>
+						<string>iPad3,5</string>
+						<string>iPad3,3</string>
+						<string>iPad3,1</string>
 					</array>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/ReserveCar-97FCB82E-C6BF-4511-AC70-519689D3050B.ipa</string>
-					<key>variantDescriptors</key>
-					<array/>
-					<key>variantIds</key>
-					<array>
-						<string>iPad2,3</string>
-						<string>iPad2,2</string>
-						<string>iPad2,1</string>
-						<string>iPad2,7</string>
-						<string>iPad2,6</string>
-						<string>iPad2,5</string>
-						<string>iPad2,4</string>
-					</array>
-				</dict>
-				<dict>
-					<key>kind</key>
-					<string>software-package</string>
-					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-214136DD-13EA-4330-B834-D61DB2B16063.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-8E57A860-0A55-4A47-99FB-1B40E56D7EEE.ipa</string>
 					<key>variantDescriptors</key>
 					<array>
 						<dict>
 							<key>device</key>
-							<string>iPhone7,1</string>
+							<string>iPhone8,1</string>
 							<key>os-version</key>
 							<string>12</string>
 						</dict>
 						<dict>
 							<key>device</key>
-							<string>iPhone11,4</string>
+							<string>iPod7,1</string>
 							<key>os-version</key>
 							<string>12</string>
 						</dict>
 						<dict>
 							<key>device</key>
-							<string>iPhone10,5</string>
+							<string>iPhone6,1</string>
 							<key>os-version</key>
 							<string>12</string>
 						</dict>
 						<dict>
 							<key>device</key>
-							<string>iPhone9,2</string>
+							<string>iPhone6,2</string>
 							<key>os-version</key>
 							<string>12</string>
 						</dict>
 						<dict>
 							<key>device</key>
-							<string>iPhone10,6</string>
+							<string>iPhone8,4</string>
 							<key>os-version</key>
 							<string>12</string>
 						</dict>
 						<dict>
 							<key>device</key>
-							<string>iPhone9,4</string>
+							<string>iPhone10,1</string>
 							<key>os-version</key>
 							<string>12</string>
 						</dict>
 						<dict>
 							<key>device</key>
-							<string>iPhone10,3</string>
+							<string>iPhone9,1</string>
 							<key>os-version</key>
 							<string>12</string>
 						</dict>
 						<dict>
 							<key>device</key>
-							<string>iPhone10,2</string>
+							<string>iPhone7,2</string>
 							<key>os-version</key>
 							<string>12</string>
 						</dict>
 						<dict>
 							<key>device</key>
-							<string>iPhone11,6</string>
+							<string>iPhone10,4</string>
 							<key>os-version</key>
 							<string>12</string>
 						</dict>
 						<dict>
 							<key>device</key>
-							<string>iPhone8,2</string>
-							<key>os-version</key>
-							<string>12</string>
-						</dict>
-						<dict>
-							<key>device</key>
-							<string>iPhone11,2</string>
+							<string>iPhone9,3</string>
 							<key>os-version</key>
 							<string>12</string>
 						</dict>
 					</array>
 					<key>variantIds</key>
 					<array>
-						<string>iPhone11,6</string>
-						<string>iPhone7,1</string>
-						<string>iPhone10,2</string>
-						<string>iPhone11,4</string>
-						<string>iPhone10,6</string>
-						<string>iPhone10,5</string>
-						<string>iPhone11,2</string>
-						<string>iPhone8,2</string>
-						<string>iPhone9,4</string>
-						<string>iPhone10,3</string>
-						<string>iPhone9,2</string>
+						<string>iPhone6,1</string>
+						<string>iPhone9,9</string>
+						<string>iPhone10,1</string>
+						<string>iPhone7,2</string>
+						<string>iPhone9,3</string>
+						<string>iPhone6,2</string>
+						<string>iPhone9,7</string>
+						<string>iPhone9,1</string>
+						<string>iPhone8,4</string>
+						<string>iPhone8,1</string>
+						<string>iPhone9,8</string>
+						<string>iPhone10,4</string>
+						<string>iPod7,1</string>
 					</array>
 				</dict>
 			</array>
