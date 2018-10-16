@@ -43,24 +43,42 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-28DD0B66-E9BE-4EE7-96C5-8BF9373A9478.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-F2B87E55-F045-4BC9-94FD-BA79AF6202B1.ipa</string>
 					<key>variantDescriptors</key>
 					<array/>
 					<key>variantIds</key>
 					<array>
-						<string>iPhone5,2</string>
-						<string>iPod5,1</string>
-						<string>iPhone5,3</string>
-						<string>iPhone4,1</string>
-						<string>iPhone5,1</string>
-						<string>iPhone5,4</string>
+						<string>iPad3,6</string>
+						<string>iPad3,4</string>
+						<string>iPad3,2</string>
+						<string>iPad3,5</string>
+						<string>iPad3,3</string>
+						<string>iPad3,1</string>
 					</array>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-E2FFD689-87DE-4EC1-A313-25EA9BFE1EE8.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-4B61FBA4-E2D0-46C3-91AF-6BD8953E3D5E.ipa</string>
+					<key>variantDescriptors</key>
+					<array/>
+					<key>variantIds</key>
+					<array>
+						<string>iPad2,3</string>
+						<string>iPad2,2</string>
+						<string>iPad2,1</string>
+						<string>iPad2,7</string>
+						<string>iPad2,6</string>
+						<string>iPad2,5</string>
+						<string>iPad2,4</string>
+					</array>
+				</dict>
+				<dict>
+					<key>kind</key>
+					<string>software-package</string>
+					<key>url</key>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-ABFE2CCB-ABE4-4975-A0EA-12CCAB85E875.ipa</string>
 					<key>variantDescriptors</key>
 					<array>
 						<dict>
@@ -149,25 +167,7 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-02E7957A-DD4D-4431-9769-A5C99E2E65C2.ipa</string>
-					<key>variantDescriptors</key>
-					<array/>
-					<key>variantIds</key>
-					<array>
-						<string>iPad2,3</string>
-						<string>iPad2,2</string>
-						<string>iPad2,1</string>
-						<string>iPad2,7</string>
-						<string>iPad2,6</string>
-						<string>iPad2,5</string>
-						<string>iPad2,4</string>
-					</array>
-				</dict>
-				<dict>
-					<key>kind</key>
-					<string>software-package</string>
-					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-3D28FE2B-C19E-4092-8F52-35BD67DC0636.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-2AEB0BAF-D410-408C-AE8B-AB10E675BB28.ipa</string>
 					<key>variantDescriptors</key>
 					<array>
 						<dict>
@@ -186,7 +186,7 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-F8B7EBC0-D58C-4E75-95B9-9E41093C5A8D.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-F465A541-A6BC-4F5D-B907-844897EDC866.ipa</string>
 					<key>variantDescriptors</key>
 					<array>
 						<dict>
@@ -373,24 +373,24 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-D5F1A7E0-EBAB-4C4C-B67F-31319632B544.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-58A56C0C-0570-42BB-9BCB-1E46621BFFDA.ipa</string>
 					<key>variantDescriptors</key>
 					<array/>
 					<key>variantIds</key>
 					<array>
-						<string>iPad3,6</string>
-						<string>iPad3,4</string>
-						<string>iPad3,2</string>
-						<string>iPad3,5</string>
-						<string>iPad3,3</string>
-						<string>iPad3,1</string>
+						<string>iPhone5,2</string>
+						<string>iPod5,1</string>
+						<string>iPhone5,3</string>
+						<string>iPhone4,1</string>
+						<string>iPhone5,1</string>
+						<string>iPhone5,4</string>
 					</array>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-8E57A860-0A55-4A47-99FB-1B40E56D7EEE.ipa</string>
+					<string>https://zontaya.github.io/src/rc/Apps/ReserveCar-73DDABC9-6137-4A90-98C9-3B2620EF44E5.ipa</string>
 					<key>variantDescriptors</key>
 					<array>
 						<dict>
