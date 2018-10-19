@@ -129,7 +129,7 @@ function sendSubscriptionToServer(subscription) {
         }
     });
 
-    xhr.open("POST", "http://10.100.90.203:8080/webpush_server/api/subscribe");
+    xhr.open("POST", "http://192.168.43.185:8080/webpush_server/api/subscribe");
     xhr.send(data);
 
     console.log('xhr:', xhr);
