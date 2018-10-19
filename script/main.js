@@ -97,7 +97,6 @@ function initializeUI() {
       console.log("User is subscribed.");
     } else {
       console.log("User is NOT subscribed.");
-
     }
     updateBtn();
   });
