@@ -115,7 +115,7 @@ function sendSubscriptionToServer(subscription) {
 
     var data = JSON.stringify({
         endpoint: subscription.endpoint,
-        key: {
+        keys: {
             "p256dh": key ? btoa(String.fromCharCode.apply(null, new Uint8Array(key))) : '',
             "auth": auth ? btoa(String.fromCharCode.apply(null, new Uint8Array(auth))) : ''
         }
@@ -129,7 +129,7 @@ function sendSubscriptionToServer(subscription) {
         }
     });
 
-    xhr.open("POST", "http://192.168.43.185:8080/webpush_server/api/subscribe");
+    xhr.open("POST", "http://10.100.90.203:8080/webpush_server/api/subscribe");
     xhr.send(data);
 
     console.log('xhr:', xhr);

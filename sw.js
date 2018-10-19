@@ -1,3 +1,4 @@
+
 var cacheName = "weather-PWA";
 var filesToCache = [
   "/",
@@ -7,7 +8,6 @@ var filesToCache = [
   "/script/material.min.js",
   "/styles/material.indigo-pink.min.css",
   "https://fonts.googleapis.com/icon?family=Material+Icons",
-  "/images/icons/icon-128x128.png",
   "/images/icons/icon-144x144.png",
   "/images/icons/icon-152x152.png",
   "/images/icons/icon-192x192.png",
@@ -50,8 +50,7 @@ self.addEventListener("activate", function (event) {
   event.waitUntil(
     caches.keys().then(function (c) {
       return Promise.all(
-        c
-        .filter(function (cache) {
+        c.filter(function (cache) {
           // Return true if you want to remove this cache,
           // but remember that caches are shared across
           // the whole origin
