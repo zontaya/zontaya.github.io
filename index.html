@@ -45,82 +45,47 @@
 
   <link rel="manifest" href="/manifest.json">
 
-  <link rel="stylesheet" href="/styles/material.indigo-pink.min.css">
-  <script defer src="/script/material.min.js"></script>
+  <link rel="stylesheet" href="script/material.min.css">
+  <script defer src="script/material.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
 
 </head>
 
-<body>
+<body class="mdc-typography">
 
-  <noscript>
-    not support
-  </noscript>
-
-
-  <!-- Always shows a header, even in smaller screens. -->
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <!-- Title -->
-        <span class="mdl-layout-title">Title</span>
-        <!-- Add spacer, to align navigation to the right -->
-        <div class="mdl-layout-spacer"></div>
-        <!-- Navigation. We hide it in small screens. -->
-        <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-        </nav>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">Title</span>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-      </nav>
+  <header class="mdc-toolbar mdc-toolbar--fixed mdc-toolbar--waterfall">
+    <div class="mdc-toolbar__row">
+      <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+        <span class="mdc-toolbar__title">Progressive Web App</span>
+      </section>
     </div>
-    <main class="mdl-layout__content">
-      <div class="page-content">
-        <!-- Your content goes here -->
+  </header>
+  <main class="mdc-toolbar-fixed-adjust">
+    <p class="demo-paragraph">
+
+    </p>
+
+    <div class="mdc-chip mdc-chip--selected">
+      <i class="material-icons mdc-chip__icon mdc-chip__icon--leading mdc-chip__icon--leading-hidden">done</i>
+      <div class="mdc-chip__text">service worker</div>
+    </div>
+    <p class="demo-paragraph">
+
+    </p>
+
+    <div class="mdc-chip mdc-chip--selected">
+      <i class="material-icons mdc-chip__icon mdc-chip__icon--leading mdc-chip__icon--leading-hidden">clear</i>
+      <div class="mdc-chip__text">notification</div>
+    </div>
 
 
-        <p>Welcome to the push messaging codelab. The button below needs to be fixed to support subscribing to push.</p>
-        <p>
-          <button disabled class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect  mdl-button--accent">
-
-            Enable Push Messaging
-          </button>
-
-          <a href="itms-services://?action=download-manifest&url=https://zontaya.github.io/src/rc/manifest.plist" id="text">
-            .ipa download </a>
-
-        </p>
-        <section class="subscription-details js-subscription-details is-invisible">
-          <p>Once you've subscribed your user, you'd send their subscription to your server to store in a database so
-            that when
-            you want to send a message you can lookup the subscription and send a message to it.</p>
-          <p>To simplify things for this code lab copy the following details into the
-            <a href="https://web-push-codelab.glitch.me/">Push Companion Site
-            </a> and it'll send a push message for you, using the application server keys on the site - so make sure
-            they
-            match.
-          </p>
-          <p class="js-subscription-json"></p>
-        </section>
-
-      </div>
-    </main>
-  </div>
+    <h1 class="mdc-typography--headline6"> </h1>
 
 
-  <script src="/script/main.js"></script>
-  <!-- <script src="/notification.js"></script> -->
+  </main>
+
+  <!-- <script src="/script/main.js"></script> -->
+  <script src="notification.js"></script>
 
 </body>
 

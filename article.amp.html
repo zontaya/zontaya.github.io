@@ -1,20 +1,24 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <title></title>
-    <meta charset="utf-8" />
-    <script>
-        function Auth() {
-            var URL = 'https://notify-bot.line.me/oauth/authorize?';
-            URL += 'response_type=code';
-            URL += '&client_id=GwvHz98JqbY0t527ycRXYU';
-            URL += '&redirect_uri=https://zontaya.github.io';//ถ้า login แล้ว เลือกกลุ่มหรือตัวเอง ให้กลับมาหน้านี้
-            URL += '&scope=notify';
-            URL += '&state=zontaya@gmail.com';//กำหนด  user หรือ อะไรก็ได้ที่สามารถบอกถึงว่าเป็น user ในระบบ
-            window.location.href = URL;
-        }
-    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/material-components-web-catalog/manifest.json">
+    <link rel="shortcut icon" href="/material-components-web-catalog/static/media/mdc_web_48dp.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
+    <title>Material Components Web | Catalog</title>
+    <link href="/material-components-web-catalog/static/css/main.d6b48174.css" rel="stylesheet">
 </head>
-<body>
-    <button onclick="Auth();">LineNotify</button>
+
+<body class="mdc-typography">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="text/javascript" src="/material-components-web-catalog/static/js/main.d78786a8.js"></script>
 </body>
+
 </html>

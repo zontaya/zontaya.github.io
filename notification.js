@@ -1,4 +1,3 @@
-"use strict";
 /**
  * Step one: run a function on load (or whenever is appropriate for you)
  * Function run on load sets up the service worker if it is supported in the
@@ -7,13 +6,22 @@
  * If you are using webpack, see the section below.
  */
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then(initialiseState);
-    console.warn('Service workers are supported in this browser.');
-} else {
-    console.warn('Service workers are not supported in this browser.');
-}
 
+let serviceWorkerRegistration = null;
+const pushButton = document.querySelector(".mdc-chip ");
+const subscriptionJson = document.querySelector(".mdc-typography--headline6");
+let isSubscribed = false;
+
+navigator.serviceWorker.register('sw.js', {
+    scope: './'
+}).then(function (sw) {
+    console.log("Registered!", sw);
+    serviceWorkerRegistration = sw;
+    sw.update()
+    initialiseState();
+}).catch(function (err) {
+    console.log("Error", err);
+});
 
 
 /**
@@ -22,12 +30,23 @@ if ('serviceWorker' in navigator) {
  */
 function initialiseState() {
 
+
+
+
     console.log('initialiseState.');
-    // Check if desktop notifications are supported
-    if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
-        console.warn('Notifications aren\'t supported.');
-        return;
-    }
+
+    pushButton.addEventListener("click", function () {
+        pushButton.disabled = true;
+        if (isSubscribed) {
+
+        } else {
+            console.log('Push messaging isn\'t supported.');
+
+            subscribe();
+        }
+    });
+
+
 
     // Check if user has disabled notifications
     // If a user has manually disabled notifications in his/her browser for 
@@ -35,37 +54,37 @@ function initialiseState() {
     // permission back on. In this statement you could show some UI element 
     // telling the user how to do so.
     if (Notification.permission === 'denied') {
-        console.warn('The user has blocked notifications.');
-        return;
+        console.log('The user has blocked notifications.');
+
     }
 
     // Check is push API is supported
     if (!('PushManager' in window)) {
-        console.warn('Push messaging isn\'t supported.');
-        return;
+        console.log('Push messaging isn\'t supported.');
+
     }
 
-    navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
 
-        // Get the push notification subscription object
-        serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
 
-                // If this is the user's first visit we need to set up
-                // a subscription to push notifications
-                if (!subscription) {
-                    subscribe();
+    // Get the push notification subscription object
+    serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
 
-                    return;
-                }
+            // If this is the user's first visit we need to set up
+            // a subscription to push notifications
+            if (!subscription) {
+                subscribe();
 
-                // Update the server state with the new subscription
-                sendSubscriptionToServer(subscription);
-            })
-            .catch(function (err) {
-                // Handle the error - show a notification in the GUI
-                console.warn('Error during getSubscription()', err);
-            });
-    });
+
+            }
+
+            // Update the server state with the new subscription
+            sendSubscriptionToServer(subscription);
+        })
+        .catch(function (err) {
+            // Handle the error - show a notification in the GUI
+            console.warn('Error during getSubscription()', err);
+        });
+
 }
 
 /**
@@ -74,30 +93,23 @@ function initialiseState() {
  * current browser.
  */
 function subscribe() {
-    navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
 
-        // Contact the third party push server. Which one is contacted by
-        // pushManager is  configured internally in the browser, so we don't
-        // need to worry about browser differences here.
-        //
-        // When .subscribe() is invoked, a notification will be shown in the
-        // user's browser, asking the user to accept push notifications from
-        // <yoursite.com>. This is why it is async and requires a catch.
-        serviceWorkerRegistration.pushManager.subscribe({
-                userVisibleOnly: true
-            }).then(function (subscription) {
+    serviceWorkerRegistration.pushManager.subscribe({
+            userVisibleOnly: true
+        }).then(function (subscription) {
 
-                // Update the server state with the new subscription
-                return sendSubscriptionToServer(subscription);
-            })
-            .catch(function (e) {
-                if (Notification.permission === 'denied') {
-                    console.warn('Permission for Notifications was denied');
-                } else {
-                    console.error('Unable to subscribe to push.', e);
-                }
-            });
-    });
+            console.warn('Permission for Notifications was denied');
+            // Update the server state with the new subscription
+            sendSubscriptionToServer(subscription);
+        })
+        .catch(function (e) {
+            if (Notification.permission === 'denied') {
+                console.warn('Permission for Notifications was denied');
+            } else {
+                console.error('Unable to subscribe to push.', e);
+            }
+        });
+
 }
 
 /**
@@ -120,8 +132,10 @@ function sendSubscriptionToServer(subscription) {
             "auth": auth ? btoa(String.fromCharCode.apply(null, new Uint8Array(auth))) : ''
         }
     })
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+
+    subscriptionJson.textContent = data;
+    subscriptionDetails.classList.remove("is-invisible");
+
 
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
@@ -129,11 +143,11 @@ function sendSubscriptionToServer(subscription) {
         }
     });
 
-    xhr.open("POST", "http://10.100.90.203:8080/webpush_server/api/subscribe");
+    xhr.open("POST", "http://192.168.1.33:8080/webpush_server/api/subscribe");
     xhr.send(data);
 
     console.log('xhr:', xhr);
     console.log('data', data);
 
-    return xhr;
+
 }

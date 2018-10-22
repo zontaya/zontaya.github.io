@@ -26,6 +26,7 @@ const applicationServerPublicKey =
   "BMhK14EULf5-oLtj-lmZq1yjEAwzI6HJjtJIhTHfuViS90p-capwR4NE5-Mk8mU7qBkKOf_DiGxI3Fq_qvnQml0";
 const pushButton = document.querySelector(".js-push-btn");
 
+
 let isSubscribed = false;
 let swRegistration = null;
 
@@ -80,6 +81,7 @@ function updateBtn() {
 }
 
 function initializeUI() {
+
   pushButton.addEventListener("click", function () {
     pushButton.disabled = true;
     if (isSubscribed) {

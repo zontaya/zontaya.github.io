@@ -1,3 +1,4 @@
+"use strict";
 
 var cacheName = "weather-PWA";
 var filesToCache = [
@@ -8,12 +9,59 @@ var filesToCache = [
   "/script/material.min.js",
   "/styles/material.indigo-pink.min.css",
   "https://fonts.googleapis.com/icon?family=Material+Icons",
+  "/images/android-desktop.png",
   "/images/icons/icon-144x144.png",
   "/images/icons/icon-152x152.png",
   "/images/icons/icon-192x192.png",
   "/images/icons/icon-256x256.png",
   "/images/icons/icon-512x512.png"
 ];
+
+
+this.oninstall = function (event) {
+  console.log("Install event", event);
+  console.log(".replace", event.replace);
+  console.log("self.skipWaiting", self.skipWaiting);
+
+  if (event.waitUntil) {
+    console.log("Testing waitUntil:");
+    console.log("[ServiceWorker] Install");
+    event.waitUntil(
+      caches
+      .open(cacheName)
+      .then(cache => {
+        console.log("[ServiceWorker] Caching app shell");
+        return cache.addAll(filesToCache);
+      })
+      .then(() => {
+        return self.skipWaiting();
+      })
+    );
+  }
+};
+
+this.onactivate = function (event) {
+  console.log("Activate event", event);
+  console.log(".waitUntil", event.waitUntil);
+  console.log("[ServiceWorker] fetch");
+  console.log("[ServiceWorker] activate");
+  event.waitUntil(
+    caches.keys().then(function (c) {
+      return Promise.all(
+        c.filter(function (cache) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+        })
+        .map(function (cache) {
+          console.log("[ServiceWorker] Caching app remove");
+          return caches.delete(cache);
+        })
+      );
+    })
+  );
+};
+
 
 self.addEventListener("install", e => {
   console.log("[ServiceWorker] Install");
@@ -30,20 +78,7 @@ self.addEventListener("install", e => {
   );
 });
 
-self.addEventListener("fetch", event => {
-  console.log("[ServiceWorker] fetch");
-  event.respondWith(
-    caches.open(cacheName).then(cache => {
-      return cache.match(event.request).then(response => {
-        var fetchPromise = fetch(event.request).then(networkResponse => {
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        });
-        return response || fetchPromise;
-      });
-    })
-  );
-});
+
 
 self.addEventListener("activate", function (event) {
   console.log("[ServiceWorker] activate");
@@ -71,6 +106,17 @@ self.addEventListener("notificationclick", function (event) {
 });
 
 
+self.addEventListener('sync', function (event) {
+  console.log("[ServiceWorker] sync event." + event);
+  const title = "Push Codelab";
+  const options = {
+    body: "Yay it works.",
+    icon: "images/android-desktop.png",
+    badge: "images/badge.png"
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
 
 self.addEventListener("push", function (event) {
   console.log("[ServiceWorker] Push Received.");
