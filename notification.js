@@ -134,8 +134,9 @@ function sendSubscriptionToServer(subscription) {
     })
 
     subscriptionJson.textContent = data;
-    subscriptionDetails.classList.remove("is-invisible");
 
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
 
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
@@ -144,7 +145,7 @@ function sendSubscriptionToServer(subscription) {
     });
 
     xhr.open("POST", "http://192.168.1.33:8080/webpush_server/api/subscribe");
-    xhr.send(data);
+    //xhr.send(data);
 
     console.log('xhr:', xhr);
     console.log('data', data);
