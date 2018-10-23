@@ -40,6 +40,7 @@ self.addEventListener("activate", function (event) {
           // Return true if you want to remove this cache,
           // but remember that caches are shared across
           // the whole origin
+          console.log("[ServiceWorker] cache ", cache);
         })
         .map(function (cache) {
           console.log("[ServiceWorker] Caching app remove");
@@ -59,9 +60,15 @@ self.addEventListener("fetch", event => {
         var fetchPromise = fetch(event.request).then(networkResponse => {
           cache.put(event.request, networkResponse.clone());
           return networkResponse;
+        }).catch(err => {
+          console.log("[ServiceWorker] fetch err 1: ", err);
         });
         return response || fetchPromise;
-      });
+      }).catch(err => {
+        console.log("[ServiceWorker] fetch err 2: ", err);
+      })
+    }).catch(err => {
+      console.log("[ServiceWorker] fetch err 3 : ", err);
     })
   );
 });
