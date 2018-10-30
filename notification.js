@@ -6,6 +6,7 @@
  * If you are using webpack, see the section below.
  */
 
+"use strict";
 
 let serviceWorkerRegistration = null;
 const pushButton = document.querySelector(".mdc-chip ");
@@ -15,13 +16,17 @@ let isSubscribed = false;
 navigator.serviceWorker.register('sw.js', {
     scope: './'
 }).then(function (sw) {
-    console.log("Registered!", sw);
     serviceWorkerRegistration = sw;
+    //notify();
+    console.log("Registered!", sw);
+    safariIniti()
     sw.update()
     initialiseState();
+   
 }).catch(function (err) {
     console.log("Error", err);
 });
+
 
 
 /**
@@ -73,12 +78,7 @@ function initialiseState() {
             // a subscription to push notifications
             if (!subscription) {
                 subscribe();
-
-
             }
-
-            // Update the server state with the new subscription
-            sendSubscriptionToServer(subscription);
         })
         .catch(function (err) {
             // Handle the error - show a notification in the GUI
@@ -94,11 +94,10 @@ function initialiseState() {
  */
 function subscribe() {
 
+    console.log('subscribe  serviceWorkerRegistration', serviceWorkerRegistration);
     serviceWorkerRegistration.pushManager.subscribe({
             userVisibleOnly: true
         }).then(function (subscription) {
-
-            console.warn('Permission for Notifications was denied');
             // Update the server state with the new subscription
             sendSubscriptionToServer(subscription);
         })
@@ -152,3 +151,48 @@ function sendSubscriptionToServer(subscription) {
 
 
 }
+
+
+const notify = function () {
+    // Check for notification compatibility.
+    if (!'Notification' in window) {
+        // If the browser version is unsupported, remain silent.
+        return;
+    }
+
+    console.log('subscribe  serviceWorkerRegistration', serviceWorkerRegistration);
+    console.log('subscribe   serviceWorkerRegistration.pushManager', serviceWorkerRegistration.pushManager);
+    // Log current permission level
+    console.log("XXXX", Notification.permission);
+    // If the user has not been asked to grant or deny notifications
+    // from this domain...
+    if (Notification.permission === 'default') {
+        Notification.requestPermission(function () {
+            // ...callback this function once a permission level has been set.
+            notify();
+        });
+    }
+    // If the user has granted permission for this domain to send notifications...
+    else if (Notification.permission === 'granted') {
+        var n = new Notification(
+            'New message from Liz', {
+                'body': 'Liz: "Hi there!"',
+                // ...prevent duplicate notifications
+                'tag': 'unique string'
+            }
+        );
+        // Remove the notification from Notification Center when clicked.
+        n.onclick = function () {
+            this.close();
+        };
+        // Callback function when the notification is closed.
+        n.onclose = function () {
+            console.log('Notification closed');
+        };
+    }
+    // If the user does not want notifications to come from this domain...
+    else if (Notification.permission === 'denied') {
+        // ...remain silent.
+        return;
+    }
+};
