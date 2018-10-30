@@ -3,6 +3,6 @@
     "websiteName": "Jad Y.",
     "websitePushID": "web.com.cct.webpush",
     "urlFormatString": "https://zontaya.github.io/%@",
-    "allowedDomains": ["https://zontaya.github.io"],
+    "allowedDomains": ["https://zontaya.github.io", "http://127.0.0.1:8887"],
     "authenticationToken": "UserTokenRT124DFGH"
 }
