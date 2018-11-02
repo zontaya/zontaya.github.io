@@ -1,5 +1,5 @@
 {
-    "webServiceURL": " https://cctwebpush.herokuapp.com",
+    "webServiceURL": "https://cctwebpush.herokuapp.com",
     "websiteName": "PWA.",
     "websitePushID": "web.com.cct.webpush",
     "urlFormatString": "https://zontaya.github.io/%@",
