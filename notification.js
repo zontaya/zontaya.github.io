@@ -22,7 +22,7 @@ navigator.serviceWorker.register('sw.js', {
     safariIniti()
     sw.update()
     initialiseState();
-   
+
 }).catch(function (err) {
     console.log("Error", err);
 });
