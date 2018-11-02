@@ -1,0 +1,12 @@
+{
+    "license": "Apache-2.0",
+    "authors": [{
+        "name": "zontaya",
+        "email": "zontaya@gmail.com",
+        "role": "Retired"
+    }],
+    "require": {
+        "php": ">=5.6"
+    },
+    "autoload": {}
+}
