@@ -3,42 +3,57 @@
 var domain = "web.com.cct.webpush";
 var webpush_server = "https://cctwebpush.herokuapp.com";
 
-function safariIniti() {
-  console.log("safariIniti");
-  var pResult = window.safari.pushNotification.permission(domain);
 
-  if (pResult.permission === "default") {
-    console.log("Permission for " + domain + " is " + pResult.permission);
-    //request permission
-    checkRemotePermission(pResult);
-  } else if (pResult.permission === "granted") {
-    console.log("Permission for " + domain + " is " + pResult.permission);
-    var token = pResult.deviceToken;
-    // Show subscription for debug
-    console.log("Subscription details:" + token);
-  } else if (pResult.permission === "denied") {
-    console.log("Permission for " + domain + " is " + pResult.permission);
-  }
+function safariIinitialiseState() {
+
+    subscribeButton.addEventListener("click", () => {
+        console.log("click");
+        if (isSubscribed) {
+
+        } else {
+            //subscribe;
+            checkRemotePermission(result);
+        }
+    });
+
+
+    var result = window.safari.pushNotification.permission(domain);
+    if (result.permission === "default") {
+        console.log(result.permission);
+
+    } else if (result.permission === "granted") {
+        console.log(result.permission);
+        isSubscribed = true;
+        var token = result.deviceToken;
+        subscriptionJson.textContent = "token:" + token;
+        subscribeButton.disabled = isSubscribed;
+        updateBtn();
+    } else if (result.permission === "denied") {
+        console.log(result.permission);
+        isSubscribed = false;
+        updateBtn();
+    }
+
 }
 
-var checkRemotePermission = function(permissionData) {
-  if (permissionData.permission === "default") {
-    // This is a new web service URL and its validity is unknown.
-
-    window.safari.pushNotification.requestPermission(
-      // The web service URL.
-      webpush_server, // The web service URL.
-      domain, // The Website Push ID.
-      {}, // Data that you choose to send to your server to help you identify the user.
-      checkRemotePermission // The callback function.
-    );
-  } else if (permissionData.permission === "denied") {
-    // The user said no.
-
-    console.log(permissionData.permission);
-  } else if (permissionData.permission === "granted") {
-    console.log(permissionData.permission);
-    console.log("token:", permissionData.deviceToken);
-    // The web service URL is a valid push provider, and the user said yes.
-  }
+const checkRemotePermission = permissionData => {
+    if (permissionData.permission === "default") {
+        window.safari.pushNotification.requestPermission(
+            webpush_server, // The web service URL.
+            domain, // The Website Push ID.
+            {}, // Data that you choose to send to your server to help you identify the user.
+            checkRemotePermission // The callback function.
+        );
+    } else if (permissionData.permission === "denied") {
+        console.log(permissionData.permission);
+        isSubscribed = false;
+        updateBtn();
+    } else if (permissionData.permission === "granted") {
+        console.log(permissionData.permission);
+        isSubscribed = true;
+        var token = permissionData.deviceToken;
+        subscriptionJson.textContent = "token:" + token;
+        subscribeButton.disabled = isSubscribed;
+        updateBtn();
+    }
 };

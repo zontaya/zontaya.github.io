@@ -1,6 +1,6 @@
 {
-  "name": "Weather",
-  "short_name": "Weather",
+  "name": "PWA",
+  "short_name": "PWA",
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait",

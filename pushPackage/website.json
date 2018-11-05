@@ -1,8 +1,0 @@
-{
-    "webServiceURL": "https://cctwebpush.herokuapp.com",
-    "websiteName": "PWA.",
-    "websitePushID": "web.com.cct.webpush",
-    "urlFormatString": "https://zontaya.github.io/%@",
-    "allowedDomains": ["https://zontaya.github.io", "http://127.0.0.1:8887"],
-    "authenticationToken": "19f8d7a6e9fb8a7f6d9330dabe"
-}

@@ -1,8 +1,0 @@
-{
-    "webServiceURL": "https://10.100.90.203:8443/webpush_server",
-    "websiteName": "Jad Y.",
-    "websitePushID": "web.com.cct.webpush",
-    "urlFormatString": "https://zontaya.github.io/%@",
-    "allowedDomains": ["https://zontaya.github.io", "http://127.0.0.1:8887"],
-    "authenticationToken": "UserTokenRT124DFGH"
-}

@@ -1,27 +1,32 @@
-/**
- * Step one: run a function on load (or whenever is appropriate for you)
- * Function run on load sets up the service worker if it is supported in the
- * browser. Requires a serviceworker in a `sw.js`. This file contains what will
- * happen when we receive a push notification.
- * If you are using webpack, see the section below.
- */
-
 "use strict";
 
 let serviceWorkerRegistration = null;
-const pushButton = document.querySelector(".mdc-chip ");
+const subscribeButton = document.querySelector("#subscribeButton");
 const subscriptionJson = document.querySelector(".mdc-typography--headline6");
 let isSubscribed = false;
 
 navigator.serviceWorker.register('sw.js', {
     scope: './'
-}).then(function (sw) {
-    serviceWorkerRegistration = sw;
-    //notify();
-    console.log("Registered!", sw);
-    safariIniti()
+}).then(sw => {
+    console.log("registered!", sw);
     sw.update()
-    initialiseState();
+    serviceWorkerRegistration = sw
+
+    if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+        initialiseState()
+    } else if (navigator.userAgent.indexOf("Chrome") !== -1) {
+        initialiseState()
+    } else if (navigator.userAgent.indexOf("Safari") !== -1) {
+        safariIinitialiseState()
+    } else if (navigator.userAgent.indexOf("Firefox") !== -1) {
+        initialiseState()
+    } else if ((navigator.userAgent.indexOf("MSIE") !== -1) || (!!document.documentMode === true)) //IF IE > 10
+
+    {
+        initialiseState()
+    } else {
+        initialiseState()
+    }
 
 }).catch(function (err) {
     console.log("Error", err);
@@ -29,77 +34,51 @@ navigator.serviceWorker.register('sw.js', {
 
 
 
-/**
- * Step two: The serviceworker is registered (started) in the browser. Now we
- * need to check if push messages and notifications are supported in the browser
- */
+
+function updateBtn() {
+    if (isSubscribed) {
+        subscribeButton.innerHTML = "unsubscribe";
+    } else {
+        subscribeButton.innerHTML = "subscribe";
+    }
+}
+
+
 function initialiseState() {
 
-
-
-
-    console.log('initialiseState.');
-
-    pushButton.addEventListener("click", function () {
-        pushButton.disabled = true;
+    subscribeButton.addEventListener("click", () => {
+        console.log("click");
         if (isSubscribed) {
-
+            unsubscribe();
         } else {
-            console.log('Push messaging isn\'t supported.');
-
             subscribe();
         }
     });
 
-
-
-    // Check if user has disabled notifications
-    // If a user has manually disabled notifications in his/her browser for 
-    // your page previously, they will need to MANUALLY go in and turn the
-    // permission back on. In this statement you could show some UI element 
-    // telling the user how to do so.
     if (Notification.permission === 'denied') {
         console.log('The user has blocked notifications.');
 
     }
-
-    // Check is push API is supported
     if (!('PushManager' in window)) {
         console.log('Push messaging isn\'t supported.');
-
     }
 
-
-
-    // Get the push notification subscription object
-    serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
-
-            // If this is the user's first visit we need to set up
-            // a subscription to push notifications
-            if (!subscription) {
-                subscribe();
-            }
+    serviceWorkerRegistration.pushManager.getSubscription().then(subscription => {
+            sendSubscriptionToServer(subscription);
+            updateBtn();
         })
         .catch(function (err) {
-            // Handle the error - show a notification in the GUI
             console.warn('Error during getSubscription()', err);
         });
 
 }
 
-/**
- * Step three: Create a subscription. Contact the third party push server (for
- * example mozilla's push server) and generate a unique subscription for the
- * current browser.
- */
 function subscribe() {
-
-    console.log('subscribe  serviceWorkerRegistration', serviceWorkerRegistration);
     serviceWorkerRegistration.pushManager.subscribe({
             userVisibleOnly: true
-        }).then(function (subscription) {
-            // Update the server state with the new subscription
+        }).then(subscription => {
             sendSubscriptionToServer(subscription);
+            updateBtn();
         })
         .catch(function (e) {
             if (Notification.permission === 'denied') {
@@ -108,18 +87,36 @@ function subscribe() {
                 console.error('Unable to subscribe to push.', e);
             }
         });
-
 }
 
-/**
- * Step four: Send the generated subscription object to our server.
- */
+function unsubscribe() {
+    serviceWorkerRegistration.pushManager.getSubscription()
+        .then(subscription => {
+            if (subscription) {
+                subscription.unsubscribe();
+            }
+        })
+        .catch(function (error) {
+            console.log("Error unsubscribing", error);
+        })
+        .then(() => {
+            sendSubscriptionToServer(null);
+            updateBtn();
+            console.log("unsubscribed.");
+        });
+}
+
 function sendSubscriptionToServer(subscription) {
 
+    if (subscription === null) {
+        subscriptionJson.textContent = "";
+        isSubscribed = false;
+        return;
+    }
+    isSubscribed = true;
     // Get public key and user auth from the subscription object
     var key = subscription.getKey ? subscription.getKey('p256dh') : '';
     var auth = subscription.getKey ? subscription.getKey('auth') : '';
-
 
     // This example uses the new fetch API. This is not supported in all
     // browsers yet.
@@ -148,8 +145,6 @@ function sendSubscriptionToServer(subscription) {
 
     console.log('xhr:', xhr);
     console.log('data', data);
-
-
 }
 
 

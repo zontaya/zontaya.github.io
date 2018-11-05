@@ -1,5 +1,4 @@
 "use strict";
-
 var cacheName = "weather-PWA";
 var filesToCache = [
   "index.html",
@@ -15,7 +14,6 @@ var filesToCache = [
   "images/icons/icon-256x256.png",
   "images/icons/icon-512x512.png"
 ];
-
 self.addEventListener("install", e => {
   console.log("[ServiceWorker] Install");
   e.waitUntil(

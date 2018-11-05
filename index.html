@@ -1,20 +1,5 @@
 <!doctype html>
-<!--
-  Material Design Lite
-  Copyright 2015 Google Inc. All rights reserved.
 
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
 <html lang="en">
 
 <head>
@@ -46,7 +31,7 @@
   <link rel="manifest" href="/manifest.json">
 
   <link rel="stylesheet" href="script/material.min.css">
-  <script src="script/material.min.js"></script>
+  <script type="text/javascript" src="script/material.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 </head>
@@ -65,30 +50,19 @@
 
     </p>
 
-    <div class="mdc-chip mdc-chip--selected">
-      <i class="material-icons mdc-chip__icon mdc-chip__icon--leading mdc-chip__icon--leading-hidden">done</i>
-      <div class="mdc-chip__text">service worker</div>
+    <div>
+      <button id="subscribeButton" class="foo-button mdc-button">
+        subscribe
+      </button>
     </div>
-    <p class="demo-paragraph">
-
-    </p>
-
-    <div class="mdc-chip mdc-chip--selected">
-      <i class="material-icons mdc-chip__icon mdc-chip__icon--leading mdc-chip__icon--leading-hidden">clear</i>
-      <div class="mdc-chip__text">notification</div>
-    </div>
-
-    <button id="foo" class="foo-button mdc-button">
-      Button
-    </button>
-
-
     <h1 class="mdc-typography--headline6"> </h1>
   </main>
 
-  <!-- <script src="/script/main.js"></script> -->
-  <script src="safari.js"></script>
-  <script src="notification.js"></script>
+  <script type="text/javascript" src="safari.js"></script>
+  <script type="text/javascript" src="notification.js"></script>
+
+
+
 
 
 </body>
