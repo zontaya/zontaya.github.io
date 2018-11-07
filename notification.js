@@ -2,6 +2,7 @@
 
 let serviceWorkerRegistration = null;
 const subscribeButton = document.querySelector("#subscribeButton");
+const notificationButton = document.querySelector("#notificationButton");
 const subscriptionJson = document.querySelector(".mdc-typography--headline6");
 let isSubscribed = false;
 
@@ -33,7 +34,10 @@ navigator.serviceWorker.register('sw.js', {
 });
 
 
-
+notificationButton.addEventListener("click", () => {
+    console.log("click noti");
+    notifyMe()
+});
 
 function updateBtn() {
     if (isSubscribed) {
@@ -41,6 +45,29 @@ function updateBtn() {
     } else {
         subscribeButton.innerHTML = "subscribe";
     }
+}
+
+function notifyMe() {
+    // Let's check if the browser supports notifications
+    if (!("Notification" in window)) {
+        console.log("This browser does not support desktop notification");
+    }
+
+
+    // Otherwise, we need to ask the user for permission
+    else if (Notification.permission !== 'denied' || Notification.permission === "default") {
+        Notification.requestPermission(function (permission) {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+                var notification = new Notification("Hi there!");
+            }
+
+            console.log("permission Me ", permission);
+        });
+    }
+
+    // At last, if the user has denied notifications, and you 
+    // want to be respectful there is no need to bother them any more.
 }
 
 
