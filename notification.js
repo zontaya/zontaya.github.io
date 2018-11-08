@@ -6,28 +6,31 @@ const notificationButton = document.querySelector("#notificationButton");
 const subscriptionJson = document.querySelector(".mdc-typography--headline6");
 let isSubscribed = false;
 
-navigator.serviceWorker.register('sw.js', {
-    scope: './'
-}).then(sw => {
-
-    console.log("registered!", sw);
+navigator.serviceWorker.register('sw.js', { scope: './'}).then(sw => {
 
     sw.update()
-
     serviceWorkerRegistration = sw
 
     if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
-        initialiseState()
-    } else if (navigator.userAgent.indexOf("Chrome") !== -1) {
-        initialiseState()
-    } else if (navigator.userAgent.indexOf("Safari") !== -1) {
-        safariIinitialiseState()
-    } else if (navigator.userAgent.indexOf("Firefox") !== -1) {
-        initialiseState()
-    } else if ((navigator.userAgent.indexOf("MSIE") !== -1) || (!!document.documentMode === true)) //IF IE > 10
 
-    {
         initialiseState()
+
+    } else if (navigator.userAgent.indexOf("Chrome") !== -1) {
+
+        initialiseState()
+
+    } else if (navigator.userAgent.indexOf("Safari") !== -1) {
+
+        safariIinitialiseState()
+
+    } else if (navigator.userAgent.indexOf("Firefox") !== -1) {
+
+        initialiseState()
+
+    } else if ((navigator.userAgent.indexOf("MSIE") !== -1) || (!!document.documentMode === true)) {
+        
+        initialiseState()
+
     } else {
         initialiseState()
     }
@@ -67,6 +70,7 @@ function initialiseState() {
 }
 
 function subscribe() {
+
     serviceWorkerRegistration.pushManager.subscribe({
             userVisibleOnly: true
         }).then(subscription => {
@@ -107,6 +111,7 @@ function sendSubscriptionToServer(subscription) {
         return;
     }
     isSubscribed = true;
+
     // Get public key and user auth from the subscription object
     var key = subscription.getKey ? subscription.getKey('p256dh') : '';
     var auth = subscription.getKey ? subscription.getKey('auth') : '';
