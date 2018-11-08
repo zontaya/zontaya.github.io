@@ -9,8 +9,11 @@ let isSubscribed = false;
 navigator.serviceWorker.register('sw.js', {
     scope: './'
 }).then(sw => {
+
     console.log("registered!", sw);
+
     sw.update()
+
     serviceWorkerRegistration = sw
 
     if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
@@ -34,11 +37,6 @@ navigator.serviceWorker.register('sw.js', {
 });
 
 
-notificationButton.addEventListener("click", () => {
-    console.log("click noti");
-    notifyMe()
-});
-
 function updateBtn() {
     if (isSubscribed) {
         subscribeButton.innerHTML = "unsubscribe";
@@ -46,30 +44,6 @@ function updateBtn() {
         subscribeButton.innerHTML = "subscribe";
     }
 }
-
-function notifyMe() {
-    // Let's check if the browser supports notifications
-    if (!("Notification" in window)) {
-        console.log("This browser does not support desktop notification");
-    }
-
-
-    // Otherwise, we need to ask the user for permission
-    else if (Notification.permission !== 'denied' || Notification.permission === "default") {
-        Notification.requestPermission(function (permission) {
-            // If the user accepts, let's create a notification
-            if (permission === "granted") {
-                var notification = new Notification("Hi there!");
-            }
-
-            console.log("permission Me ", permission);
-        });
-    }
-
-    // At last, if the user has denied notifications, and you 
-    // want to be respectful there is no need to bother them any more.
-}
-
 
 function initialiseState() {
 
@@ -81,14 +55,6 @@ function initialiseState() {
             subscribe();
         }
     });
-
-    if (Notification.permission === 'denied') {
-        console.log('The user has blocked notifications.');
-
-    }
-    if (!('PushManager' in window)) {
-        console.log('Push messaging isn\'t supported.');
-    }
 
     serviceWorkerRegistration.pushManager.getSubscription().then(subscription => {
             sendSubscriptionToServer(subscription);
@@ -173,48 +139,3 @@ function sendSubscriptionToServer(subscription) {
     console.log('xhr:', xhr);
     console.log('data', data);
 }
-
-
-const notify = function () {
-    // Check for notification compatibility.
-    if (!'Notification' in window) {
-        // If the browser version is unsupported, remain silent.
-        return;
-    }
-
-    console.log('subscribe  serviceWorkerRegistration', serviceWorkerRegistration);
-    console.log('subscribe   serviceWorkerRegistration.pushManager', serviceWorkerRegistration.pushManager);
-    // Log current permission level
-    console.log("XXXX", Notification.permission);
-    // If the user has not been asked to grant or deny notifications
-    // from this domain...
-    if (Notification.permission === 'default') {
-        Notification.requestPermission(function () {
-            // ...callback this function once a permission level has been set.
-            notify();
-        });
-    }
-    // If the user has granted permission for this domain to send notifications...
-    else if (Notification.permission === 'granted') {
-        var n = new Notification(
-            'New message from Liz', {
-                'body': 'Liz: "Hi there!"',
-                // ...prevent duplicate notifications
-                'tag': 'unique string'
-            }
-        );
-        // Remove the notification from Notification Center when clicked.
-        n.onclick = function () {
-            this.close();
-        };
-        // Callback function when the notification is closed.
-        n.onclose = function () {
-            console.log('Notification closed');
-        };
-    }
-    // If the user does not want notifications to come from this domain...
-    else if (Notification.permission === 'denied') {
-        // ...remain silent.
-        return;
-    }
-};

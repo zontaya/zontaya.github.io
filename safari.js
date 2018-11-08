@@ -20,14 +20,16 @@ function safariIinitialiseState() {
     var result = window.safari.pushNotification.permission(domain);
     if (result.permission === "default") {
         console.log(result.permission);
-
+        checkRemotePermission(result);
     } else if (result.permission === "granted") {
+
         console.log(result.permission);
         isSubscribed = true;
         var token = result.deviceToken;
         subscriptionJson.textContent = "token:" + token;
         subscribeButton.disabled = isSubscribed;
         updateBtn();
+
     } else if (result.permission === "denied") {
         console.log(result.permission);
         isSubscribed = false;
