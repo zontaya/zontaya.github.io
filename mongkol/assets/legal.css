@@ -1,0 +1,241 @@
+/* Document pages (privacy policy, account deletion). Uses the tokens in style.css. */
+
+.nav .nav-end { margin-left: auto; }
+.nav-home { color: var(--text-dim); font-size: 0.9375rem; text-decoration: none; }
+.nav-home:hover { color: var(--gold-soft); }
+
+/* ---------- page head ---------- */
+
+.doc-hero {
+  padding: var(--s8) 0 var(--s7);
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(50% 80% at 92% 0%, rgba(241, 193, 0, 0.13), transparent 62%),
+    radial-gradient(55% 90% at 0% 70%, rgba(35, 75, 75, 0.75), transparent 70%),
+    var(--bg);
+}
+.doc-hero h1 { font-size: clamp(2rem, 4.2vw, 3rem); letter-spacing: -0.01em; }
+.doc-hero .lead { max-width: 40em; margin-top: var(--s4); color: var(--text-dim); font-size: 1.0625rem; }
+.doc-meta { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s5); }
+
+/* ---------- layout: contents list beside the text ---------- */
+
+.doc-layout {
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 1fr);
+  gap: var(--s7);
+  align-items: start;
+  width: min(1120px, 100% - 40px);
+  margin-inline: auto;
+  padding: var(--s7) 0 var(--s9);
+}
+.doc-layout.narrow { grid-template-columns: minmax(0, 46rem); justify-content: center; }
+
+.toc {
+  position: sticky;
+  top: 92px;
+  max-height: calc(100vh - 116px);
+  overflow: auto;
+  padding: var(--s5) var(--s4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--bg-raised);
+  font-size: 0.9375rem;
+}
+.toc summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--s2);
+  color: var(--gold);
+  font: 600 0.8125rem/1.4 var(--f-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  list-style: none;
+  cursor: default;
+}
+.toc summary::-webkit-details-marker { display: none; }
+.toc ol { margin: var(--s3) 0 0; padding: 0; list-style: none; counter-reset: toc; }
+.toc li { counter-increment: toc; }
+.toc a {
+  display: flex;
+  gap: var(--s2);
+  padding: 6px var(--s2);
+  border-radius: 8px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  text-decoration: none;
+}
+.toc a::before {
+  content: counter(toc);
+  flex: none;
+  width: 1.5em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.toc a:hover { background: rgba(233, 226, 217, 0.06); color: var(--gold-soft); }
+
+/* ---------- document text ---------- */
+
+.doc { min-width: 0; max-width: 46rem; }
+.doc > :first-child { margin-top: 0; }
+
+.doc h2 {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s3);
+  margin-top: var(--s7);
+  padding-top: var(--s6);
+  border-top: 1px solid var(--line);
+  font-size: 1.5rem;
+  scroll-margin-top: 84px;
+}
+.doc h2 .num {
+  flex: none;
+  min-width: 1.7em;
+  color: var(--gold);
+  font: 700 1rem/1 var(--f-sans);
+  font-variant-numeric: tabular-nums;
+}
+.doc h3 { margin-top: var(--s5); font: 600 1.0625rem/1.5 var(--f-sans); color: var(--text); }
+.doc p { margin-top: var(--s3); color: var(--text-dim); }
+.doc strong { color: var(--text); font-weight: 600; }
+.doc a { color: var(--gold-soft); text-underline-offset: 3px; }
+.doc a:hover { color: var(--gold); }
+
+.doc ul { margin: var(--s3) 0 0; padding: 0; list-style: none; }
+.doc ul li { position: relative; padding-left: 1.5em; color: var(--text-dim); }
+.doc ul li + li { margin-top: var(--s2); }
+.doc ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.3em;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* the main points, first thing in the text */
+.keypoints {
+  padding: var(--s5) var(--s6);
+  border: 1px solid rgba(241, 193, 0, 0.35);
+  border-radius: var(--r-md);
+  background: linear-gradient(165deg, var(--teal), #1c3b3b);
+}
+.keypoints h2 {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--gold);
+  font-size: 1.125rem;
+}
+.doc .keypoints ul li { color: var(--text); }
+
+/* a point the reader should not miss */
+.note {
+  margin-top: var(--s4);
+  padding: var(--s4) var(--s5);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  background: rgba(241, 193, 0, 0.07);
+}
+.doc .note p { margin-top: 0; color: var(--text); }
+
+/* tables */
+.table-wrap {
+  margin-top: var(--s4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--bg-raised);
+  overflow: hidden;
+}
+.doc table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; line-height: 1.65; }
+.doc th {
+  padding: var(--s3) var(--s4);
+  background: rgba(35, 75, 75, 0.6);
+  color: var(--gold-soft);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-align: left;
+}
+.doc td {
+  padding: var(--s3) var(--s4);
+  border-top: 1px solid var(--line);
+  color: var(--text-dim);
+  vertical-align: top;
+}
+.doc td:first-child { color: var(--text); font-weight: 500; }
+
+/* numbered steps */
+.doc ol.steps-list { margin: var(--s4) 0 0; padding: 0; list-style: none; counter-reset: step; }
+.doc ol.steps-list li {
+  position: relative;
+  min-height: 36px;
+  padding: 4px 0 0 52px;
+  color: var(--text-dim);
+  counter-increment: step;
+}
+.doc ol.steps-list li + li { margin-top: var(--s4); }
+.doc ol.steps-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--gold);
+  font: 700 1rem/1 var(--f-serif);
+}
+
+/* contact card at the end */
+.contact-card {
+  margin-top: var(--s4);
+  padding: var(--s5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--bg-raised);
+}
+.doc .contact-card p { margin-top: 0; }
+.doc .contact-card p + p { margin-top: var(--s2); }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 960px) {
+  .doc-layout { grid-template-columns: minmax(0, 1fr); gap: var(--s5); padding-top: var(--s5); }
+  .doc { max-width: none; }
+  .toc { position: static; max-height: none; padding: var(--s4); }
+  .toc summary { cursor: pointer; }
+  .toc summary::after { content: "+"; color: var(--gold); font-size: 1.375rem; line-height: 1; }
+  .toc[open] summary::after { content: "–"; }
+}
+
+@media (max-width: 720px) {
+  .doc-hero { padding: var(--s7) 0 var(--s6); }
+  .doc-layout { padding-bottom: var(--s8); }
+  .doc h2 { font-size: 1.3125rem; }
+  .keypoints { padding: var(--s5); }
+
+  /* a table becomes one block per row, each cell under its column name */
+  .doc thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .doc tr { display: block; padding: var(--s3) 0; }
+  .doc tr + tr { border-top: 1px solid var(--line); }
+  .doc td { display: block; padding: var(--s1) var(--s4); border: 0; }
+  .doc td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .doc td:first-child::before { content: none; }
+  .doc td:first-child { padding-bottom: var(--s2); font-weight: 600; }
+}

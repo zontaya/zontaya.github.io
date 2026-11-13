@@ -515,6 +515,9 @@ html[lang="en"] .th { display: none !important; }
 /* footer */
 .footer { padding: var(--s6) 0 var(--s7); border-top: 1px solid var(--line); color: var(--muted); font-size: 0.875rem; }
 .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s3) var(--s5); }
+.footer-links { display: flex; flex-wrap: wrap; gap: var(--s3) var(--s5); }
+.footer-links a { color: var(--text-dim); text-underline-offset: 3px; }
+.footer-links a:hover { color: var(--gold-soft); }
 
 /* reveal on scroll (only when JS is on) */
 .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
